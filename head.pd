@@ -1,0 +1,7 @@
+#N canvas 881 59 655 1042 10;
+#X obj 12 12 metronome \$1 \$2;
+#X obj 12 101 count \$1 \$2;
+#X obj 12 153 m_28 \$1 m\$2 #b8b8b8 #fcfcc4;
+#X obj 12 218 reader \$1 \$2;
+#X obj 12 55 eu_step \$1 \$2;
+#X coords 0 -1 1 1 94 240 2 10 10;

@@ -1,5 +1,99 @@
-#N canvas 394 112 801 371 12;
+#N canvas 422 59 1488 1100 12;
 #X declare -path ../lib;
 #X declare -path ../abstractions;
-#X obj 509 33 declare -path ../lib;
-#X obj 509 58 declare -path ../abstractions;
+#X declare -path objects;
+#X declare -path ../0.Mixer;
+#X declare -path ../0.beemo;
+#X declare -path ../0.beemo/objects;
+#X declare -path ../0.beemo/presets;
+#X declare -path ../0.beemo/cadsr;
+#X obj 70 32 clock \$0 0;
+#X obj 216 33 bng 32 250 50 0 \$0-init \$0-init-set empty 17 7 0 10
+-262144 -1 -1;
+#X obj 337 31 loadbang;
+#X obj 319 110 s \$0-init-set;
+#X floatatom 222 105 5 0 0 0 - #0-pitch-set #0-pitch;
+#X msg 337 56 60;
+#X obj 332 85 s \$0-pitch-set;
+#X obj 421 170 score \$0;
+#N canvas 0 59 795 857 declarations_and_tables 0;
+#X obj 33 28 declare -path ../lib;
+#X obj 33 53 declare -path ../abstractions;
+#X obj 33 77 declare -path objects;
+#X obj 33 102 declare -path ../0.Mixer;
+#X obj 38 139 array define -k -yrange 0 96 \$0-speed 15;
+#A 0 1 2 3 4 5 6 7 8 12 16 24 32 48 64 96;
+#X f 13;
+#X obj 39 211 array define -k -yrange 0 12 \$0-speed_ratio 15;
+#A 0 0.125 0.25 0.375 0.5 0.625 0.75 0.875 1 1.5 2 3 4 6 8 12;
+#X f 17;
+#X msg 64 365 #b8b8b8;
+#X msg 56 272 #fcfcc4;
+#X msg 58 298 #d9ffff;
+#X msg 58 321 #e6ffdc;
+#X msg 59 345 #fef1d6;
+#X obj 177 251 s \$0-speed;
+#X msg 189 149 0 1 2 3 4 5 6 7 8 12 16 24 32 48 64 96, f 10;
+#X msg 169 344 0 0.125 0.25 0.375 0.5 0.625 0.75 0.875 1 1.5 2 3 4
+6 8 12, f 14;
+#X obj 168 436 s \$0-speed_ratio;
+#X obj 167 495 text define -k modes;
+#A set ionian 0 2 4 5 7 9 11 12 \; dorian 0 2 3 5 7 9 10 12 \; phrygian
+0 1 3 5 7 8 10 12 \; lydian 0 2 4 6 7 9 11 12 \; mixolydian 0 2 4 5
+7 9 10 12 \; aeolian 0 2 3 5 7 8 10 12 \; locrian 0 1 3 5 6 8 10 12
+\; harm_major 0 2 4 5 7 8 11 12 \; dorian_b5 0 2 3 5 6 9 10 12 \; phrygian_b4
+0 1 3 4 7 8 10 12 \; lydian_b3 0 2 3 6 7 9 11 12 \; mixolydian_b2 0
+1 4 5 7 9 10 12 \; aeolian_b1 0 3 4 6 8 9 11 12 \; locrian_b7 0 1 3
+5 6 8 9 12 \; harm_minor 0 2 3 5 7 8 11 12 \; locrian_H6 0 1 3 5 6
+9 10 12 \; ionian_H5 0 2 4 5 8 9 11 12 \; dorian_H4 0 2 3 6 7 9 10
+12 \; phrygian_H3 0 1 4 5 7 8 10 12 \; lydian_H2 0 3 4 6 7 9 11 12
+\; mixolydian_H1 0 1 3 4 6 8 9 12 \; mel_minor 0 2 3 5 7 9 11 12 \;
+dorian_b2 0 1 3 5 7 9 10 12 \; lydian_H5 0 2 4 6 8 9 11 12 \; lydian_b7
+0 2 4 6 7 9 10 12 \; mixolydian_b6 0 2 4 5 7 8 10 12 \; locrian_H2
+0 2 3 5 6 8 10 12 \; locrian_b4 0 1 3 4 6 8 10 12 \;;
+#X msg 179 467 read m28.txt;
+#X obj 171 284 array define -k -yrange 0 8 \$0-time 8;
+#A 0 0.25 0.5 1 2 3 4 6 8;
+#X f 13;
+#X msg 166 527 0 0.25 0.5 1 2 3 4 6 8;
+#X obj 166 552 s \$0-time;
+#X obj 436 33 declare -path ../0.beemo;
+#X obj 436 55 declare -path ../0.beemo/objects;
+#X obj 436 78 declare -path ../0.beemo/presets;
+#X obj 436 100 declare -path ../0.beemo/cadsr;
+#X connect 12 0 11 0;
+#X connect 13 0 14 0;
+#X connect 16 0 15 0;
+#X connect 18 0 19 0;
+#X restore 184 537 pd declarations_and_tables;
+#X obj 523 39 m_28_all \$0 ma #b8b8b8 #fcfcc4;
+#X obj 37 170 head \$0 0;
+#X obj 133 170 head \$0 1;
+#X obj 229 170 head \$0 2;
+#X obj 325 170 head \$0 3;
+#X obj 652 202 synth~ \$0 0;
+#X obj 650 429 synth~ \$0 1;
+#X obj 650 636 synth~ \$0 2;
+#X obj 654 850 synth~ \$0 3;
+#X obj 685 150 r \$0-midinote_0;
+#X obj 657 396 r \$0-midinote_1;
+#X obj 654 605 r \$0-midinote_2;
+#X obj 648 820 r \$0-midinote_3;
+#X obj 685 175 print;
+#X obj 39 591 4x_mixer \$0;
+#X obj 652 317 throw~ \$0-channel_1;
+#X obj 650 544 throw~ \$0-channel_2;
+#X obj 650 751 throw~ \$0-channel_3;
+#X obj 654 965 throw~ \$0-channel_4;
+#X connect 2 0 3 0;
+#X connect 2 0 5 0;
+#X connect 5 0 6 0;
+#X connect 14 0 24 0;
+#X connect 15 0 25 0;
+#X connect 16 0 26 0;
+#X connect 17 0 27 0;
+#X connect 18 0 14 0;
+#X connect 18 0 22 0;
+#X connect 19 0 15 0;
+#X connect 20 0 16 0;
+#X connect 21 0 17 0;
